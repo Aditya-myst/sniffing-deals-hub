@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { Search, Menu, X } from 'lucide-react';
+import { Search, Menu, X, Sparkles } from 'lucide-react';
 import Button from './Button';
 
 const NavBar: React.FC = () => {
@@ -51,7 +51,10 @@ const NavBar: React.FC = () => {
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
-          <span className="font-bold text-2xl text-gradient">DealSniffer</span>
+          <span className="h-8 w-8 bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center rounded-lg text-white">
+            <Sparkles className="h-5 w-5" />
+          </span>
+          <span className="font-bold text-2xl text-gradient">SaveSmart</span>
         </Link>
 
         {/* Desktop Navigation */}

@@ -1,233 +1,223 @@
 
 import React from 'react';
 import MainLayout from '@/layouts/MainLayout';
-import { cn } from '@/lib/utils';
-import { Wallet, Gift, CreditCard, ShoppingBag, ExternalLink, Award, TrendingUp, Clock } from 'lucide-react';
+import { 
+  Gift, 
+  CreditCard, 
+  ShoppingBag, 
+  Zap, 
+  Award, 
+  TrendingUp, 
+  ArrowRight,
+  ChevronRight
+} from 'lucide-react';
 import Button from '@/components/Button';
+import { cn } from '@/lib/utils';
 
-const RewardCard: React.FC<{
-  title: string;
+// Partner Offer Card
+const PartnerOfferCard = ({ 
+  logo, 
+  name, 
+  discount, 
+  description 
+}: { 
+  logo: string;
+  name: string;
+  discount: string;
   description: string;
-  reward: string;
-  logo: React.ReactNode;
-  color: string;
-}> = ({ title, description, reward, logo, color }) => {
-  return (
-    <div className="card hover:shadow-md transition-all duration-300 hover:-translate-y-1">
-      <div className="flex items-start">
-        <div className={cn(
-          "w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 mr-4",
-          color
-        )}>
-          {logo}
-        </div>
-        <div className="flex-grow">
-          <h3 className="text-lg font-semibold mb-1">{title}</h3>
-          <p className="text-sm text-muted-foreground mb-3">{description}</p>
-          <div className="bg-secondary/50 py-1.5 px-3 rounded-full inline-block text-sm font-medium">
-            {reward}
-          </div>
-        </div>
+}) => (
+  <div className="card group hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+    <div className="flex items-start gap-4">
+      <div className="w-16 h-16 rounded-lg bg-secondary flex items-center justify-center shrink-0 overflow-hidden">
+        <img src={logo} alt={name} className="w-full h-full object-cover" />
       </div>
-      <div className="mt-4 pt-4 border-t border-border">
-        <Button 
-          variant="secondary" 
-          size="sm" 
-          className="w-full"
-          icon={<ExternalLink className="h-4 w-4" />}
-          iconPosition="right"
-        >
-          Visit & Earn
-        </Button>
+      <div className="flex-1">
+        <div className="flex justify-between">
+          <h3 className="font-semibold text-lg">{name}</h3>
+          <span className="text-emerald-500 font-bold">{discount}</span>
+        </div>
+        <p className="text-muted-foreground text-sm mt-1">{description}</p>
+        <div className="mt-3">
+          <Button 
+            variant="secondary" 
+            size="sm" 
+            icon={<ShoppingBag className="h-4 w-4" />}
+            iconPosition="left"
+          >
+            Shop Now
+          </Button>
+        </div>
       </div>
     </div>
-  );
-};
+  </div>
+);
 
-const Rewards: React.FC = () => {
-  const partnerRewards = [
+// Reward Category Card
+const RewardCategoryCard = ({ 
+  icon, 
+  title, 
+  description, 
+  color
+}: { 
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  color: string;
+}) => (
+  <div className="card group hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+    <div className={cn(
+      "w-12 h-12 rounded-full flex items-center justify-center mb-4",
+      color
+    )}>
+      {icon}
+    </div>
+    <h3 className="font-semibold text-lg mb-2">{title}</h3>
+    <p className="text-muted-foreground text-sm">{description}</p>
+    <div className="mt-4 flex items-center text-primary font-medium text-sm group-hover:translate-x-1 transition-transform">
+      Learn More
+      <ChevronRight className="h-4 w-4 ml-1" />
+    </div>
+  </div>
+);
+
+const Rewards = () => {
+  const partnerOffers = [
     {
-      title: 'Amazon',
-      description: 'Earn cashback on all eligible purchases',
-      reward: 'Up to 5% cashback',
-      logo: <ShoppingBag className="h-6 w-6 text-white" />,
-      color: 'bg-orange-500'
+      logo: "https://images.unsplash.com/photo-1662576303712-a29cfa594c94?auto=format&fit=crop&q=80&w=200&h=200",
+      name: "Amazon",
+      discount: "5% Cashback",
+      description: "On all purchases through SaveSmart"
     },
     {
-      title: 'Walmart',
-      description: 'Special discount when paying with your linked card',
-      reward: '3% instant discount',
-      logo: <CreditCard className="h-6 w-6 text-white" />,
-      color: 'bg-blue-500'
+      logo: "https://images.unsplash.com/photo-1609081219090-a6d81d3085bf?auto=format&fit=crop&q=80&w=200&h=200",
+      name: "Target",
+      discount: "7% Cashback",
+      description: "Limited time offer for electronics"
     },
     {
-      title: 'Best Buy',
-      description: 'Points for every dollar spent in-store or online',
-      reward: '2x points per $1',
-      logo: <Gift className="h-6 w-6 text-white" />,
-      color: 'bg-yellow-500'
+      logo: "https://images.unsplash.com/photo-1530890105946-39e9e95b7dc4?auto=format&fit=crop&q=80&w=200&h=200",
+      name: "Best Buy",
+      discount: "6% Cashback",
+      description: "Plus exclusive coupons for members"
     },
     {
-      title: 'Target',
-      description: 'Bonus cashback when shopping through DealSniffer',
-      reward: 'Extra 2% cashback',
-      logo: <Wallet className="h-6 w-6 text-white" />,
-      color: 'bg-red-500'
+      logo: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&q=80&w=200&h=200",
+      name: "Walmart",
+      discount: "4% Cashback",
+      description: "On groceries and household items"
+    }
+  ];
+
+  const rewardCategories = [
+    {
+      icon: <Gift className="h-6 w-6 text-white" />,
+      title: "Gift Cards",
+      description: "Redeem your points for gift cards from top retailers",
+      color: "bg-emerald-500"
+    },
+    {
+      icon: <CreditCard className="h-6 w-6 text-white" />,
+      title: "Cash Rewards",
+      description: "Transfer your earnings directly to your bank account",
+      color: "bg-blue-500"
+    },
+    {
+      icon: <Zap className="h-6 w-6 text-white" />,
+      title: "Exclusive Deals",
+      description: "Unlock special offers only available to members",
+      color: "bg-amber-500"
+    },
+    {
+      icon: <TrendingUp className="h-6 w-6 text-white" />,
+      title: "Point Multipliers",
+      description: "Shop during bonus periods to earn extra points",
+      color: "bg-purple-500"
     }
   ];
 
   return (
     <MainLayout>
-      <div className="pt-24 pb-16 px-4">
-        <div className="container mx-auto">
-          <div className="max-w-3xl mx-auto mb-12 text-center">
-            <h1 className="heading-2 mb-4">Rewards Program</h1>
-            <p className="text-xl text-muted-foreground">
-              Earn cashback and rewards when you shop through DealSniffer.
+      <div className="pt-28 pb-16">
+        <div className="container mx-auto px-4">
+          {/* Header Section */}
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h1 className="heading-2 mb-4">Earn Rewards & Save More</h1>
+            <p className="text-lg text-muted-foreground mb-6">
+              Shop through SaveSmart and earn cashback, points, and exclusive offers from your favorite retailers.
             </p>
+            <Button 
+              icon={<Award className="h-5 w-5" />}
+              iconPosition="left"
+              className="mx-auto"
+            >
+              Join Rewards Program
+            </Button>
           </div>
-          
-          {/* User Rewards Summary */}
-          <div className="card mb-12">
-            <div className="flex flex-col md:flex-row items-center gap-8">
-              <div className="flex-shrink-0">
-                <div className="h-32 w-32 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Award className="h-16 w-16 text-primary" />
-                </div>
-              </div>
-              
-              <div className="text-center md:text-left">
-                <h2 className="heading-3 mb-2">Your Rewards</h2>
-                <p className="text-lg text-muted-foreground mb-4">
-                  Sign up or log in to start earning rewards on your purchases.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Button>Sign Up Now</Button>
-                  <Button variant="secondary">Login</Button>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          {/* How It Works */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-semibold mb-6">How It Works</h2>
-            
+
+          {/* User Rewards Summary - Simulated */}
+          <div className="mb-16 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl p-8 text-white">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="flex flex-col items-center text-center p-6 bg-secondary/30 rounded-2xl">
-                <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
-                  <ShoppingBag className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="text-lg font-semibold mb-2">1. Shop Through Our Links</h3>
-                <p className="text-muted-foreground">
-                  Visit your favorite stores by clicking through our site or using our browser extension.
-                </p>
+              <div className="space-y-2">
+                <div className="text-white/70 text-sm">Available Points</div>
+                <div className="text-3xl font-bold">2,450</div>
+                <div className="text-xs text-white/70">≈ $24.50 in rewards</div>
               </div>
               
-              <div className="flex flex-col items-center text-center p-6 bg-secondary/30 rounded-2xl">
-                <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
-                  <TrendingUp className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="text-lg font-semibold mb-2">2. Earn Points & Cashback</h3>
-                <p className="text-muted-foreground">
-                  Automatically earn rewards points and cashback on qualifying purchases.
-                </p>
+              <div className="space-y-2">
+                <div className="text-white/70 text-sm">Lifetime Cashback</div>
+                <div className="text-3xl font-bold">$135.75</div>
+                <div className="text-xs text-white/70">From 23 purchases</div>
               </div>
               
-              <div className="flex flex-col items-center text-center p-6 bg-secondary/30 rounded-2xl">
-                <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
-                  <Wallet className="h-8 w-8 text-primary" />
+              <div className="space-y-2">
+                <div className="text-white/70 text-sm">Current Tier</div>
+                <div className="flex items-center">
+                  <Award className="h-6 w-6 mr-2" />
+                  <span className="text-2xl font-bold">Silver</span>
                 </div>
-                <h3 className="text-lg font-semibold mb-2">3. Redeem Your Rewards</h3>
-                <p className="text-muted-foreground">
-                  Cash out your earnings or redeem points for gift cards and exclusive deals.
-                </p>
+                <div className="text-xs text-white/70">550 points to Gold tier</div>
               </div>
             </div>
           </div>
-          
-          {/* Partner Rewards */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-semibold mb-6">Partner Rewards</h2>
+
+          {/* Partner Offers */}
+          <div className="mb-16">
+            <div className="flex justify-between items-center mb-8">
+              <h2 className="text-2xl font-semibold">Featured Partner Offers</h2>
+              <Button variant="ghost" size="sm" className="text-emerald-500" icon={<ArrowRight className="h-4 w-4" />} iconPosition="right">
+                View All
+              </Button>
+            </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {partnerRewards.map((reward, idx) => (
-                <RewardCard
-                  key={idx}
-                  title={reward.title}
-                  description={reward.description}
-                  reward={reward.reward}
-                  logo={reward.logo}
-                  color={reward.color}
+              {partnerOffers.map((offer, index) => (
+                <PartnerOfferCard
+                  key={index}
+                  logo={offer.logo}
+                  name={offer.name}
+                  discount={offer.discount}
+                  description={offer.description}
                 />
               ))}
             </div>
           </div>
-          
-          {/* Limited Time Offers */}
+
+          {/* Reward Categories */}
           <div>
-            <h2 className="text-2xl font-semibold mb-6">Limited Time Offers</h2>
+            <div className="flex justify-between items-center mb-8">
+              <h2 className="text-2xl font-semibold">Ways to Earn & Redeem</h2>
+            </div>
             
-            <div className="grid grid-cols-1 gap-4">
-              <div className="card bg-gradient-to-r from-primary/5 to-blue-500/5 border-primary/20">
-                <div className="flex flex-col md:flex-row items-center gap-6">
-                  <div className="md:w-1/4 flex items-center justify-center">
-                    <div className="bg-primary/10 rounded-full p-6">
-                      <Clock className="h-12 w-12 text-primary" />
-                    </div>
-                  </div>
-                  
-                  <div className="md:w-2/4">
-                    <h3 className="text-xl font-semibold mb-2">Black Friday Rewards Boost</h3>
-                    <p className="text-muted-foreground mb-4">
-                      Earn double rewards points on all purchases made between November 24-28.
-                      Limited time offer for all DealSniffer members!
-                    </p>
-                    <div className="flex items-center text-sm space-x-4">
-                      <div className="flex items-center">
-                        <Clock className="h-4 w-4 mr-1 text-muted-foreground" />
-                        <span className="text-muted-foreground">Ends in 13 days</span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="md:w-1/4 flex justify-center md:justify-end">
-                    <Button>
-                      Learn More
-                    </Button>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="card border-yellow-500/20 bg-gradient-to-r from-yellow-500/5 to-orange-500/5">
-                <div className="flex flex-col md:flex-row items-center gap-6">
-                  <div className="md:w-1/4 flex items-center justify-center">
-                    <div className="bg-yellow-500/10 rounded-full p-6">
-                      <Gift className="h-12 w-12 text-yellow-500" />
-                    </div>
-                  </div>
-                  
-                  <div className="md:w-2/4">
-                    <h3 className="text-xl font-semibold mb-2">Holiday Gift Card Bundle</h3>
-                    <p className="text-muted-foreground mb-4">
-                      Redeem your points for gift cards and receive a 15% bonus value.
-                      Perfect for holiday shopping or gifting!
-                    </p>
-                    <div className="flex items-center text-sm space-x-4">
-                      <div className="flex items-center">
-                        <Clock className="h-4 w-4 mr-1 text-muted-foreground" />
-                        <span className="text-muted-foreground">Ends in 21 days</span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="md:w-1/4 flex justify-center md:justify-end">
-                    <Button>
-                      Learn More
-                    </Button>
-                  </div>
-                </div>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {rewardCategories.map((category, index) => (
+                <RewardCategoryCard
+                  key={index}
+                  icon={category.icon}
+                  title={category.title}
+                  description={category.description}
+                  color={category.color}
+                />
+              ))}
             </div>
           </div>
         </div>

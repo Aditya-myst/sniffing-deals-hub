@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import SearchBar from './SearchBar';
 import { cn } from '@/lib/utils';
 
@@ -34,15 +34,22 @@ const HeroSection: React.FC = () => {
     <section className="relative min-h-screen pt-24 pb-16 flex flex-col items-center justify-center px-4">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden -z-10">
-        <div className="absolute top-1/4 -left-64 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/3 -right-64 w-96 h-96 bg-blue-400/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 -left-64 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/3 -right-64 w-96 h-96 bg-teal-400/5 rounded-full blur-3xl"></div>
       </div>
       
       <div className="max-w-4xl mx-auto text-center">
         {/* Badge - Optional */}
         <div className="inline-flex items-center rounded-full border border-border bg-background/50 px-3 py-1 text-sm mb-6 shadow-sm backdrop-blur-sm">
-          <span className="text-muted-foreground">Introducing DealSniffer</span>
+          <span className="text-muted-foreground">Introducing SaveSmart</span>
           <ArrowRight className="ml-1 h-3.5 w-3.5 text-muted-foreground" />
+        </div>
+        
+        {/* Logo */}
+        <div className="flex justify-center mb-6">
+          <div className="h-16 w-16 bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center rounded-xl text-white shadow-lg">
+            <Sparkles className="h-8 w-8" />
+          </div>
         </div>
         
         {/* Title */}
@@ -50,7 +57,7 @@ const HeroSection: React.FC = () => {
           ref={titleRef}
           className="opacity-0 heading-1 mb-6 tracking-tight"
         >
-          <span className="text-gradient">Sniff Out</span> The Best Deals Online
+          <span className="bg-gradient-to-r from-emerald-500 to-teal-600 bg-clip-text text-transparent">Save Smart</span> With Every Purchase
         </h1>
         
         {/* Subtitle */}
@@ -69,11 +76,11 @@ const HeroSection: React.FC = () => {
         {/* Example Searches */}
         <div className="mt-6 text-sm text-muted-foreground flex flex-wrap justify-center gap-2">
           <span>Try searching:</span>
-          <button className="text-primary hover:underline transition-all">Nike Shoes</button>
+          <button className="text-emerald-500 hover:underline transition-all">Nike Shoes</button>
           <span>•</span>
-          <button className="text-primary hover:underline transition-all">Amazon.com</button>
+          <button className="text-emerald-500 hover:underline transition-all">Amazon.com</button>
           <span>•</span>
-          <button className="text-primary hover:underline transition-all">iPhone 15</button>
+          <button className="text-emerald-500 hover:underline transition-all">iPhone 15</button>
         </div>
       </div>
     </section>

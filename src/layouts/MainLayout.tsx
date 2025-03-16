@@ -25,9 +25,9 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
-              <span className="font-bold text-xl">DealSniffer</span>
+              <span className="font-bold text-xl">SaveSmart</span>
               <p className="text-sm text-muted-foreground mt-1">
-                © {new Date().getFullYear()} DealSniffer. All rights reserved.
+                © {new Date().getFullYear()} SaveSmart. All rights reserved.
               </p>
             </div>
             <div className="flex gap-6">
