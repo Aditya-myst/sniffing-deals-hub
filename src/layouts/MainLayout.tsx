@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import NavBar from '@/components/NavBar';
 
 interface MainLayoutProps {
@@ -31,6 +31,9 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
               </p>
             </div>
             <div className="flex gap-6">
+              <Link to="/join-rewards" className="text-muted-foreground hover:text-foreground transition-colors">
+                Join Rewards
+              </Link>
               <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
                 Terms
               </a>

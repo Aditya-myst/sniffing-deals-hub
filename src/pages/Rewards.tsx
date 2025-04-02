@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import MainLayout from '@/layouts/MainLayout';
 import { 
   Gift, 
@@ -145,13 +146,15 @@ const Rewards = () => {
             <p className="text-lg text-muted-foreground mb-6">
               Shop through SaveSmart and earn cashback, points, and exclusive offers from your favorite retailers.
             </p>
-            <Button 
-              icon={<Award className="h-5 w-5" />}
-              iconPosition="left"
-              className="mx-auto"
-            >
-              Join Rewards Program
-            </Button>
+            <Link to="/join-rewards">
+              <Button 
+                icon={<Award className="h-5 w-5" />}
+                iconPosition="left"
+                className="mx-auto"
+              >
+                Join Rewards Program
+              </Button>
+            </Link>
           </div>
 
           {/* User Rewards Summary - Simulated */}

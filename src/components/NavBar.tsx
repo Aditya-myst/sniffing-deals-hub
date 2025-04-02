@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { Search, Menu, X, Sparkles } from 'lucide-react';
+import { Search, Menu, X, Sparkles, LogIn } from 'lucide-react';
 import Button from './Button';
 
 const NavBar: React.FC = () => {
@@ -87,9 +87,25 @@ const NavBar: React.FC = () => {
             </Button>
           </Link>
           
-          <Button variant="primary" size="sm">
-            Sign Up
-          </Button>
+          <Link to="/join-rewards">
+            <Button 
+              variant="primary" 
+              size="sm"
+            >
+              Join Rewards
+            </Button>
+          </Link>
+          
+          <Link to="/join-rewards">
+            <Button 
+              variant="ghost" 
+              size="sm"
+              icon={<LogIn className="h-4 w-4" />}
+              iconPosition="left"
+            >
+              Sign In
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -131,9 +147,17 @@ const NavBar: React.FC = () => {
           
           <div className="border-t border-border my-4"></div>
           
-          <Button variant="primary" className="w-full mt-2">
-            Sign Up
-          </Button>
+          <Link to="/join-rewards">
+            <Button variant="primary" className="w-full mb-2">
+              Join Rewards
+            </Button>
+          </Link>
+          
+          <Link to="/join-rewards">
+            <Button variant="ghost" className="w-full" icon={<LogIn className="h-4 w-4" />} iconPosition="left">
+              Sign In
+            </Button>
+          </Link>
         </nav>
       </div>
     </header>
